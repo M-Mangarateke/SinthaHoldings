@@ -349,7 +349,7 @@ p { margin: 0 0 1em; max-width: 62ch; }
   color: var(--cyan);
   font-variation-settings: "opsz" 144, "SOFT" 100;
 }
-.hero__title .word { display: inline-block; overflow: hidden; }
+.hero__title .word { display: inline-block; overflow: hidden; padding: 0 0.05em; vertical-align: bottom; }
 .hero__title .word > span {
   display: inline-block;
   transform: translateY(110%);
