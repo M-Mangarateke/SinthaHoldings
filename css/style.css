@@ -159,7 +159,7 @@ p { margin: 0 0 1em; max-width: 62ch; }
 }
 .nav__inner {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
   align-items: center;
   gap: 28px;
   padding-block: 14px;
@@ -200,6 +200,8 @@ p { margin: 0 0 1em; max-width: 62ch; }
 }
 .nav__links {
   display: flex; align-items: center; gap: 28px;
+  justify-content: center;
+  justify-self: center;
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.14em;
@@ -221,6 +223,7 @@ p { margin: 0 0 1em; max-width: 62ch; }
   display: inline-flex; align-items: center; gap: 10px;
 }
 .nav__tagline {
+  justify-self: end;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.16em;
@@ -245,6 +248,9 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .nav.is-open .nav__burger::after  { bottom: 50%; transform: translateY(50%) rotate(-45deg); }
 
 @media (max-width: 980px) {
+  .nav__inner {
+    grid-template-columns: 1fr auto;
+  }
   .nav__links {
     position: absolute; top: 100%; left: 0; right: 0;
     background: var(--paper);
@@ -260,7 +266,7 @@ p { margin: 0 0 1em; max-width: 62ch; }
   }
   .nav__links a { padding: 14px 0; width: 100%; border-bottom: 1px solid var(--bone); font-size: 16px; }
   .nav.is-open .nav__links { opacity: 1; transform: translateY(0); pointer-events: auto; }
-  .nav__burger { display: block; }
+  .nav__burger { display: block; justify-self: end; }
   .nav__tagline { display: none; }
 }
 
@@ -349,11 +355,23 @@ p { margin: 0 0 1em; max-width: 62ch; }
   color: var(--cyan);
   font-variation-settings: "opsz" 144, "SOFT" 100;
 }
-.hero__title .word { display: inline-block; overflow: hidden; padding: 0.12em 0.05em; margin: -0.12em 0; vertical-align: bottom; }
+.hero__title .word {
+  display: inline-block;
+  overflow: hidden;
+  padding: 0.16em 0.14em;
+  margin: -0.16em -0.09em;
+  vertical-align: bottom;
+}
 .hero__title .word > span {
   display: inline-block;
   transform: translateY(110%);
   will-change: transform;
+}
+.hero__title.is-revealed .word {
+  overflow: visible;
+}
+.hero__title.is-revealed .word > span {
+  transform: none;
 }
 
 .hero__lede {
@@ -414,6 +432,12 @@ p { margin: 0 0 1em; max-width: 62ch; }
 @media (max-width: 980px) {
   .hero { min-height: 90vh; }
   .hero__counters { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 600px) {
+  .hero__title {
+    font-size: clamp(44px, 12vw, 58px);
+    line-height: 1.03;
+  }
 }
 
 /* ----------- compliance marquee ----------- */
@@ -571,6 +595,25 @@ p { margin: 0 0 1em; max-width: 62ch; }
 }
 .log__item:hover .log__img { transform: scale(1.04); }
 
+.log__item--jojo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("../assets/images/field-14-jojo-tank.jpg") center / cover no-repeat;
+  filter: blur(18px) saturate(.85) contrast(.95);
+  opacity: .46;
+  transform: scale(1.08);
+}
+.log__item--jojo .log__img {
+  z-index: 1;
+  object-fit: contain;
+  object-position: center;
+}
+.log__item--jojo:hover .log__img {
+  transform: none;
+}
+
 .log__meta {
   position: absolute;
   inset: 0;
@@ -581,6 +624,9 @@ p { margin: 0 0 1em; max-width: 62ch; }
   color: var(--paper);
   background: linear-gradient(180deg, rgba(10,26,36,.35) 0%, rgba(10,26,36,0) 30%, rgba(10,26,36,0) 55%, rgba(10,26,36,.8) 100%);
   pointer-events: none;
+}
+.log__item--jojo .log__meta {
+  z-index: 2;
 }
 .log__tag {
   align-self: flex-start;

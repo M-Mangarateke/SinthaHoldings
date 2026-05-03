@@ -44,6 +44,7 @@
       return `<span class="word"><span>${t}</span></span>`;
     }).join('');
     splitTitle.innerHTML = wrapped;
+    if (!hasGsap) splitTitle.classList.add('is-revealed');
   }
 
   /* -------------- entrance animations -------------- */
@@ -56,6 +57,7 @@
         ease: 'power3.out',
         stagger: 0.06,
         delay: 0.15,
+        onComplete: () => splitTitle.classList.add('is-revealed'),
       });
     }
 
@@ -124,6 +126,7 @@
 
       // log items parallax
       document.querySelectorAll('.log__item').forEach((item) => {
+        if (item.classList.contains('log__item--jojo')) return;
         const img = item.querySelector('.log__img');
         if (!img) return;
         gsap.fromTo(img,
