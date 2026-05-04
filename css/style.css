@@ -619,6 +619,7 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .log__item.span-6 { grid-column: span 6; aspect-ratio: 16/11; }
 .log__item.span-7 { grid-column: span 7; aspect-ratio: 16/11; }
 .log__item.span-8 { grid-column: span 8; aspect-ratio: 16/9;  }
+.log__item.span-12 { grid-column: span 12; aspect-ratio: 16/7; }
 @media (max-width: 880px) {
   .log__item { grid-column: 1 / -1 !important; aspect-ratio: 4/3; }
 }
