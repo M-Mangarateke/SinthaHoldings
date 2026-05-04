@@ -620,6 +620,12 @@ p { margin: 0 0 1em; max-width: 62ch; }
 .log__item.span-7 { grid-column: span 7; aspect-ratio: 16/11; }
 .log__item.span-8 { grid-column: span 8; aspect-ratio: 16/9;  }
 .log__item.span-12 { grid-column: span 12; aspect-ratio: 16/7; }
+@media (min-width: 881px) {
+  .log__item.span-12.log__item--atwork {
+    grid-column: 3 / span 8;
+    aspect-ratio: 4/3;
+  }
+}
 @media (max-width: 880px) {
   .log__item { grid-column: 1 / -1 !important; aspect-ratio: 4/3; }
 }
@@ -643,6 +649,7 @@ p { margin: 0 0 1em; max-width: 62ch; }
   transition: transform 1.2s var(--ease-out);
 }
 .log__item:hover .log__img { transform: scale(1.04); }
+.log__item--atwork:hover .log__img { transform: none; }
 
 .log__item--jojo::before {
   content: "";

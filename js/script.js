@@ -127,6 +127,7 @@
       // log items parallax
       document.querySelectorAll('.log__item').forEach((item) => {
         if (item.classList.contains('log__item--jojo')) return;
+        if (item.classList.contains('log__item--atwork')) return;
         const img = item.querySelector('.log__img');
         if (!img) return;
         gsap.fromTo(img,
