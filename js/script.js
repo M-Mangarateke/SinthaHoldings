@@ -75,8 +75,8 @@
       duration: 0.8, ease: 'power2.out', delay: 1.0,
     });
 
-    // hero video parallax zoom
-    const heroBg = document.querySelector('.hero__bg video');
+    // hero image parallax zoom
+    const heroBg = document.querySelector('.hero__bg img');
     if (heroBg && hasST) {
       gsap.fromTo(heroBg,
         { scale: 1.1 },
@@ -327,24 +327,6 @@
         { scale: 1 },
         { scale: 1.05, duration: 0.3, ease: 'power2.out', yoyo: true, repeat: 1 }
       );
-    });
-  });
-
-  /* -------------- safety: ensure video doesn't break if missing -------------- */
-  document.querySelectorAll('.hero__bg video').forEach((v) => {
-    v.addEventListener('error', () => {
-      v.style.display = 'none';
-      const bg = v.closest('.hero__bg');
-      if (bg && !bg.querySelector('img.hero__poster')) {
-        const img = document.createElement('img');
-        img.className = 'hero__poster';
-        img.src = v.getAttribute('poster');
-        img.alt = '';
-        bg.prepend(img);
-      }
-    });
-    v.addEventListener('loadedmetadata', () => {
-      if (!v.videoWidth) v.dispatchEvent(new Event('error'));
     });
   });
 
